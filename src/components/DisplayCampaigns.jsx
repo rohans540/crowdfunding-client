@@ -7,6 +7,7 @@ import { FundCard } from "../components";
 const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
     const navigate = useNavigate();
     const handleNavigate = (campaign) => {
+        console.log("campaign...", campaign)
         navigate(`/campaign-details/${campaign.title}`, { state: campaign })
     }
   return (
@@ -21,9 +22,9 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
                 <p className='font-epilogue font-semibold text-[14px] leading-[30px] text-[#818183]'>You have not created any campaigns yet</p>
             )}
 
-            {!isLoading && campaigns.length > 0 && campaigns.map((campaign) => (
+            {!isLoading && campaigns.length > 0 && campaigns.map((campaign, index) => (
                 <FundCard 
-                    key={campaign.id} 
+                    key={index} 
                     { ...campaign }
                     handleClick={() => handleNavigate(campaign)}  
                 />

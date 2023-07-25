@@ -2999,6 +2999,11 @@
   "resolved" "https://registry.npmjs.org/domain-browser/-/domain-browser-4.22.0.tgz"
   "version" "4.22.0"
 
+"dotenv@^16.3.1":
+  "integrity" "sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-16.3.1.tgz"
+  "version" "16.3.1"
+
 "duplexify@^4.1.2":
   "integrity" "sha512-fz3OjcNCHmRP12MJoZMPglx8m4rrFP8rovnk4vT8Fs+aonZoCwGg10dSsQsfP/E62eZcPTMSMP6686fu9Qlqtw=="
   "resolved" "https://registry.npmjs.org/duplexify/-/duplexify-4.1.2.tgz"
@@ -5517,6 +5522,11 @@
   "integrity" "sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg=="
   "resolved" "https://registry.npmjs.org/varint/-/varint-6.0.0.tgz"
   "version" "6.0.0"
+
+"vite-plugin-env@^1.0.1":
+  "integrity" "sha512-yP4Xc/tACFI+odh3vUF2nnU350VbcCk0qrM05petxYEd9Zyn6kKUW4wmTTQRHY+hPWk7ar4og7xj6OfcU20WIA=="
+  "resolved" "https://registry.npmjs.org/vite-plugin-env/-/vite-plugin-env-1.0.1.tgz"
+  "version" "1.0.1"
 
 "vite-plugin-node-polyfills@^0.7.0":
   "integrity" "sha512-DKBSGDOx3R8pUIsQFRZAWNYp0vIffJOT0NkuByX4WIQq80nJ2eamAph5T9zG91liO1Fyl1lo7/Onh6xoQO52XQ=="
