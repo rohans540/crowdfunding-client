@@ -1,29 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 
 import { useStateContext } from '../context';
-import { CustomButton, CountBox } from "../components";
+import { CustomButton, CountBox, Loader } from "../components";
 import { calculateBarPercentage, daysLeft } from '../utils';
 import { thirdweb } from '../assets';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
-  const { getDonations, contract, address } = useStateContext();
+  const navigate = useNavigate();
+  const { getDonations, contract, address, donate } = useStateContext();
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState("");
   const [donators, setDonators] = useState([]);
 
   const remainingDays = daysLeft(state.deadline)
-  console.log("state", state);
+  
+  const fetchDonators = async () => {
+    const data = await getDonations(state.pId);
+    setDonators(data);
+  }
+
+  useEffect(() => {
+    if(contract) fetchDonators();
+  }, [contract, address])
 
   const handleDonate = async () => {
-
+    setLoading(true);
+    await donate(state.pId, amount);
+    setLoading(false);
+    navigate("/");
   }
 
   return (
     <div>
-      {loading && 'Loading...'}
+      {loading && <Loader />}
       <div className='w-full flex md:flex-row flex-col mt-10 gap-[30px]'>
         <div className='flex-1 flex-col'>
           <img src={state.image} alt='campaign' className='w-full h-[410px] object-cover rounded-xl' />
@@ -65,7 +77,10 @@ const CampaignDetails = () => {
             <h4 className='font-epilogue font-semibold text-[18px] text-white uppercase'>Donators</h4>
             <div className='mt-[20xp] flex flex-col gap-4'>
               {donators.length > 0 ? donators.map((donor, index) => (
-                <div>{donor}</div>
+                <div key={index} className='flex justify-center items-center gap-4'>
+                  <p className='font-epilogue font-normal text-[16px] text-[#b2b3bd] leading-[26px] break-all'>{index + 1}. {donor.donor}</p>
+                  <p className='font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] break-all'>{donor.donation}</p>
+                </div>
               )) : (
                 <p className='mt-[4px] font-epilogue font-normal text-[16px] leading-[26px] text-justify text-[#808191]'>No donors yet, Be the first one!</p>
               )}
@@ -99,7 +114,7 @@ const CampaignDetails = () => {
 
                   <CustomButton 
                     btnType="button"
-                    title="Funf Campaign"
+                    title="Fund Campaign"
                     styles="w-full bg-[#8c6dfd]"
                     handleClick={handleDonate}
                   />
